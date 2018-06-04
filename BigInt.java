@@ -13,6 +13,51 @@ public class BigInt {
 boolean isNegative;
 ArrayList<Integer> bigNum = new ArrayList<Integer>();
 
+
+// =============================================================================
+// Constructors
+// =============================================================================
+
+public BigInt(){
+        isNegative = true;
+        ArrayList<Integer> bigNum = bigNum.add(0);
+}
+
+public BigInt(String aNumber){
+        isNegative(aNumber);
+
+        if (isNegative == true || plusSignDetected(aNumber) == true) {
+                aNumber = removeSign(aNumber);
+                if (isInteger(aNumber) || whiteSpaceDetected(aNumber)) {
+                        createArrayList(aNumber);
+
+                }
+                else{
+                        throw new IsNotInteger("Please remove special characters");
+                }
+        }
+
+        else {
+                if (isInteger(aNumber) || whiteSpaceDetected(aNumber)) {
+                        createArrayList(aNumber);
+                }
+                else {
+                        throw new IsNotInteger("Please remove special characters");
+                }
+        }
+}
+
+@Override
+public String toString(){
+        ArrayList<Integer> temp = bigNum;
+
+        Collections.reverse(temp);
+
+        String s = new String();
+        return s = temp.stream().map(Object:: toString).collect(Collectors.joining(""));
+
+}
+
 // =============================================================================
 // Checks
 // =============================================================================
@@ -77,51 +122,13 @@ private void createArrayList(String aNumber){
 
 }
 
-private static String toString(ArrayList<Integer> bigNum){
-
-
-        ArrayList<Integer> temp = bigNum;
-
-        Collections.reverse(temp);
-
-        String s = new String();
-        return s = temp.stream().map(Object:: toString).collect(Collectors.joining(""));
-
-}
-
-private static String removeSign(String aNumber){
+private String removeSign(String aNumber){
         StringBuilder sb = new StringBuilder(aNumber);
         System.out.println("sign removed");
         aNumber = sb.deleteCharAt(0).toString();
         return aNumber;
 
 
-}
-
-private String process(String aNumber){
-        isNegative(aNumber);
-
-        if (isNegative == true || plusSignDetected(aNumber) == true) {
-                aNumber = removeSign(aNumber);
-                if (isInteger(aNumber) || whiteSpaceDetected(aNumber)) {
-                        createArrayList(aNumber);
-                        return toString(bigNum);
-
-                }
-                else{
-                        throw new IsNotInteger("Please remove special characters");
-                }
-        }
-
-        else {
-                if (isInteger(aNumber) || whiteSpaceDetected(aNumber)) {
-                        createArrayList(aNumber);
-                        return toString(bigNum);
-                }
-                else {
-                        throw new IsNotInteger("Please remove special characters");
-                }
-        }
 }
 
 // =============================================================================
@@ -151,17 +158,6 @@ private String process(String aNumber){
 // public divideNumbers(){
 //
 // }
-
-// =============================================================================
-// Excecution
-// =============================================================================
-
-public static void main (String args[]){
-        Scanner sc = new Scanner(System.in);
-        BigInt firstNumber = new BigInt();
-        System.out.println(firstNumber.process(sc.next()));
-
-}
 
 
 
