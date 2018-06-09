@@ -127,9 +127,12 @@ public String toString(){
 
 
         if (this.isNegative == true) {
-                StringBuilder sb = new StringBuilder(s);
-                sb.insert(0, "-");
-                return sb.toString();
+                if (s == "0") {
+                  return "0";
+                }
+                else{   StringBuilder sb = new StringBuilder(s);
+                        sb.insert(0, "-");
+                        return sb.toString();}
         }
         else {
                 return s;
@@ -160,7 +163,7 @@ public BigInt subtract(BigInt other){
         if (other.isNegative && this.isNegative == true) {
                 if (this.bigNum.size() < other.bigNum.size()) {
                         ArrayList<Integer> sum = createSum(other, this);
-                        BigInt result = new BigInt("-"+sum.toString().replaceAll("[\\[\\], ]", ""));
+                        BigInt result = new BigInt(sum.toString().replaceAll("[\\[\\], ]", ""));
                         return result;
                 }
 
