@@ -4,15 +4,14 @@ import java.util.Arrays;
 import java.util.regex.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.Collections;
 public class BigInt {
 
 // =============================================================================
 // Variables
 // =============================================================================
 
-boolean isNegative;
-ArrayList<Integer> bigNum = new ArrayList<Integer>();
+private boolean isNegative;
+private ArrayList<Integer> bigNum = new ArrayList<Integer>();
 
 
 // =============================================================================
@@ -45,73 +44,6 @@ public BigInt(String aNumber){
                         throw new IsNotInteger("Please remove special characters");
                 }
         }
-}
-
-
-@Override
-public String toString(){
-        ArrayList<Integer> temp = this.bigNum;
-        String s = new String();
-
-        Collections.reverse(temp);
-
-      s = temp.stream().map(Object:: toString).collect(Collectors.joining(""));
-      return  s.replaceFirst("^0+(?!$)", "");
-
-}
-
-public BigInt add(BigInt other){
-int numberOfZeros = 0;
-
-// check and add zeros if needed
-        if (this.bigNum.size()-1 > other.bigNum.size()-1) {
-                numberOfZeros = this.bigNum.size() - other.bigNum.size();
-                for (int i=0; i < numberOfZeros; i++) {
-                        other.bigNum.add(0);
-                }
-        }
-        else if (other.bigNum.size()-1 > this.bigNum.size()-1) {
-                numberOfZeros = other.bigNum.size() - this.bigNum.size();
-                for (int i=0; i < numberOfZeros; i++) {
-                        this.bigNum.add(0);
-                }
-        }
-
-
-        ArrayList<Integer> sum = createSum(createTempArrayList(this, other));
-        BigInt result = new BigInt(sum.toString().replaceAll("[\\[\\], ]", ""));
-        return result;
-}
-
-private ArrayList<Integer> createTempArrayList(BigInt aNumber, BigInt other ){
-
-        ArrayList<Integer> tempArrayList = new ArrayList<Integer>();
-        int tempInt = 0;
-        for(int i = (aNumber.bigNum.size()-1); i >=0; i--) {
-                tempInt = aNumber.bigNum.get(i) + other.bigNum.get(i);
-                System.out.println(tempInt);
-                tempArrayList.add(tempInt);
-                tempInt = 0;
-        }
-        return tempArrayList;
-}
-
-private ArrayList<Integer> createSum(ArrayList<Integer> tempArrayList){
-        for(int i = (tempArrayList.size()-1); i >= 1; i--) {
-                if (tempArrayList.get(i) > 9) {
-                        tempArrayList.set(i,tempArrayList.get(i) - 10);
-                        tempArrayList.set(i - 1,tempArrayList.get(i - 1) + 1 );
-                        System.out.println(tempArrayList.get(i));
-                }
-
-        }
-        System.out.println(tempArrayList.get(0));
-        if (tempArrayList.get(0) > 9) {
-                tempArrayList.set(0,tempArrayList.get(0) - 10);
-                tempArrayList.add(0,1);
-
-        }
-        return tempArrayList;
 }
 
 // =============================================================================
@@ -187,27 +119,175 @@ private String removeSign(String aNumber){
 
 }
 
-// =============================================================================
-// TODO Future Code
-// =============================================================================
+@Override
+public String toString(){
+        ArrayList<Integer> temp = this.bigNum;
+        String s = new String();
 
-//  private addNumbers(BigInt other){
-//
-//          if (other.bigNum && this.bigNum == (isNegative == true) || other.bigNum && this.bigNum == (isNegative == false) ) {
-//                  add(this.bigNum, other.bigNum);
-//          }
-//          else if (this.bigNum >= other.bigNum){
-//                  subtract(this.bigNum, other.bigNum);
-//          }
-//          else{
-//                  stubtract(other.bigNum, this.bigNum);
-//          }
-//  }
+        s = temp.stream().map(Object:: toString).collect(Collectors.joining(""));
+        StringBuilder stringbuilder1 = new StringBuilder(s).reverse();
+        s = s.replaceFirst("^0+(?!$)", "");
+        s =  stringbuilder1.toString();
 
-//
-// public divideNumbers(){
-//
-// }
+
+        if (this.isNegative == true) {
+                StringBuilder sb = new StringBuilder(s);
+                sb.insert(0, "-");
+                return sb.toString();
+        }
+        else {
+                return s;
+        }
+
+}
+
+// =============================================================================
+// Subtraction
+// =============================================================================
+public BigInt subtract(BigInt other){
+        int numberOfZeros = 0;
+
+// check and add zeros if needed
+        if (this.bigNum.size()-1 > other.bigNum.size()-1) {
+                numberOfZeros = this.bigNum.size() - other.bigNum.size();
+                for (int i=0; i < numberOfZeros; i++) {
+                        other.bigNum.add(0);
+                }
+        }
+        else if (other.bigNum.size()-1 > this.bigNum.size()-1) {
+                numberOfZeros = other.bigNum.size() - this.bigNum.size();
+                for (int i=0; i < numberOfZeros; i++) {
+                        this.bigNum.add(0);
+                }
+        }
+
+        if (other.isNegative && this.isNegative == true) {
+                if (this.bigNum.size() < other.bigNum.size()) {
+                        ArrayList<Integer> sum = createSum(other, this);
+                        BigInt result = new BigInt("-"+sum.toString().replaceAll("[\\[\\], ]", ""));
+                        return result;
+                }
+
+                else{
+                        ArrayList<Integer> difference = createDifference(this, other);
+                        BigInt result = new BigInt(difference.toString().replaceAll("[\\[\\], ]", ""));
+                        return result;
+                }
+        }
+        else if (this.isNegative == false && other.isNegative == true) {
+                ArrayList<Integer> difference = createDifference(this, other);
+                BigInt result = new BigInt(difference.toString().replaceAll("[\\[\\], ]", ""));
+                return result;
+        }
+        else if (this.isNegative == true && other.isNegative == false) {
+                ArrayList<Integer> sum = createSum(this, other);
+                BigInt result = new BigInt("-"+sum.toString().replaceAll("[\\[\\], ]", ""));
+                return result;
+        }
+        else {
+                ArrayList<Integer> difference = createDifference(this, other);
+                BigInt result = new BigInt(difference.toString().replaceAll("[\\[\\], ]", ""));
+                return result;
+        }
+
+}
+
+private ArrayList<Integer> createDifference(BigInt aNumber, BigInt other ){
+
+        ArrayList<Integer> tempArrayList = new ArrayList<Integer>();
+        int tempInt = 0;
+        for(int i = (aNumber.bigNum.size()-1); i >=0; i--) {
+                tempInt = aNumber.bigNum.get(i) - other.bigNum.get(i);
+                tempArrayList.add(tempInt);
+                tempInt = 0;
+        }
+        System.out.println(tempArrayList);
+        for(int i = (tempArrayList.size()-1); i >= 1; i--) {
+                if (tempArrayList.get(i) < 0) {
+                        tempArrayList.set(i,tempArrayList.get(i) + 10);
+                        tempArrayList.set(i - 1,tempArrayList.get(i - 1) - 1 );
+//                        System.out.println(tempArrayList.get(i));
+                }
+
+        }
+//        System.out.println(tempArrayList.get(0));
+//        System.out.println(tempArrayList);
+        return tempArrayList;
+}
+
+// =============================================================================
+// Addition
+// =============================================================================
+public BigInt add(BigInt other){
+        int numberOfZeros = 0;
+
+// check and add zeros if needed
+        if (this.bigNum.size()-1 > other.bigNum.size()-1) {
+                numberOfZeros = this.bigNum.size() - other.bigNum.size();
+                for (int i=0; i < numberOfZeros; i++) {
+                        other.bigNum.add(0);
+                }
+        }
+        else if (other.bigNum.size()-1 > this.bigNum.size()-1) {
+                numberOfZeros = other.bigNum.size() - this.bigNum.size();
+                for (int i=0; i < numberOfZeros; i++) {
+                        this.bigNum.add(0);
+                }
+        }
+
+        if (other.isNegative && this.isNegative == true) {
+
+                ArrayList<Integer> sum = createSum(this, other);
+                BigInt result = new BigInt("-"+sum.toString().replaceAll("[\\[\\], ]", ""));
+                return result;
+
+        }
+        else if (this.isNegative == false && other.isNegative == true) {
+                ArrayList<Integer> difference = createDifference(this, other);
+                BigInt result = new BigInt(difference.toString().replaceAll("[\\[\\], ]", ""));
+                return result;
+        }
+        else if (this.isNegative == true && other.isNegative == false) {
+                ArrayList<Integer> difference = createDifference(other, this);
+                BigInt result = new BigInt(difference.toString().replaceAll("[\\[\\], ]", ""));
+                return result;
+        }
+        else{
+                ArrayList<Integer> sum = createSum(this, other);
+                BigInt result = new BigInt(sum.toString().replaceAll("[\\[\\], ]", ""));
+                return result;
+        }
+
+}
+
+private ArrayList<Integer> createSum(BigInt aNumber, BigInt other ){
+
+        ArrayList<Integer> tempArrayList = new ArrayList<Integer>();
+        int tempInt = 0;
+        for(int i = (aNumber.bigNum.size()-1); i >=0; i--) {
+                tempInt = aNumber.bigNum.get(i) + other.bigNum.get(i);
+                tempArrayList.add(tempInt);
+                tempInt = 0;
+        }
+//     System.out.println(tempArrayList);
+
+        for(int i = (tempArrayList.size()-1); i >= 1; i--) {
+                if (tempArrayList.get(i) > 9) {
+                        tempArrayList.set(i,tempArrayList.get(i) - 10);
+                        tempArrayList.set(i - 1,tempArrayList.get(i - 1) + 1 );
+//                        System.out.println(tempArrayList.get(i));
+                }
+
+        }
+        //      System.out.println(tempArrayList.get(0));
+        if (tempArrayList.get(0) > 9) {
+                tempArrayList.set(0,tempArrayList.get(0) - 10);
+                tempArrayList.add(0,1);
+
+        }
+        //      System.out.println(tempArrayList);
+        return tempArrayList;
+}
 
 
 
