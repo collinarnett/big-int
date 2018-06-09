@@ -103,20 +103,16 @@ private static boolean whiteSpaceDetected(String aNumber){
 // =============================================================================
 
 private void createArrayList(String aNumber){
-
         for(int i=(aNumber.length() - 1); i >= 0; i--) {
                 this.bigNum.add(Character.getNumericValue(aNumber.charAt(i)));
         }
-
 }
 
 private String removeSign(String aNumber){
         StringBuilder sb = new StringBuilder(aNumber);
-        System.out.println("sign removed");
+//        System.out.println("sign removed");
         aNumber = sb.deleteCharAt(0).toString();
         return aNumber;
-
-
 }
 
 @Override
@@ -236,11 +232,9 @@ public BigInt add(BigInt other){
         }
 
         if (other.isNegative && this.isNegative == true) {
-
                 ArrayList<Integer> sum = createSum(this, other);
                 BigInt result = new BigInt("-"+sum.toString().replaceAll("[\\[\\], ]", ""));
                 return result;
-
         }
         else if (this.isNegative == false && other.isNegative == true) {
                 ArrayList<Integer> difference = createDifference(this, other);

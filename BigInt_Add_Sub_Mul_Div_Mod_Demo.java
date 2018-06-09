@@ -17,8 +17,6 @@ public static void main(String[] args)
         //	System.out.println("difference b3 is " + b1 +" - " + b2 + " = " + b3);
         //	b3 = b1.multiply(b2);
         //	System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
-
-
         //    b1 = new BigInt("1");
         //    b2 = new BigInt("1");
         //    b3 = b1.add(b2);
