@@ -127,18 +127,17 @@ public String toString(){
 
 
         if (this.isNegative == true) {
-                if (s == "0") {
-                  return "0";
-                }
-                else{   StringBuilder sb = new StringBuilder(s);
-                        sb.insert(0, "-");
-                        return sb.toString();}
+                StringBuilder sb = new StringBuilder(s);
+                sb.insert(0, "-");
+                return sb.toString();
         }
-        else {
-                return s;
-        }
-
+        return s;
 }
+
+
+
+
+
 
 // =============================================================================
 // Subtraction
@@ -233,12 +232,22 @@ public BigInt add(BigInt other){
                         this.bigNum.add(0);
                 }
         }
+//end check
 
+//check case
         if (other.isNegative && this.isNegative == true) {
-                ArrayList<Integer> sum = createSum(this, other);
-                BigInt result = new BigInt("-"+sum.toString().replaceAll("[\\[\\], ]", ""));
-                return result;
+                if (other.bigNum.toString().equals("[0]") && this.bigNum.toString().equals("[0]")) {
+                        ArrayList<Integer> sum = createSum(this, other);
+                        BigInt result = new BigInt(sum.toString().replaceAll("[\\[\\], ]", ""));
+                        return result;
+                }
+                else{
+                        ArrayList<Integer> sum = createSum(this, other);
+                        BigInt result = new BigInt("-"+sum.toString().replaceAll("[\\[\\], ]", ""));
+                        return result;
+                }
         }
+
         else if (this.isNegative == false && other.isNegative == true) {
                 ArrayList<Integer> difference = createDifference(this, other);
                 BigInt result = new BigInt(difference.toString().replaceAll("[\\[\\], ]", ""));
@@ -256,6 +265,7 @@ public BigInt add(BigInt other){
         }
 
 }
+//end check
 
 private ArrayList<Integer> createSum(BigInt aNumber, BigInt other ){
 

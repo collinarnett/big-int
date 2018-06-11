@@ -8,8 +8,8 @@ public static void main(String[] args)
         BigInt b1;
         BigInt b2;
         BigInt b3;
-        b1 = new BigInt("10");
-        b2 = new BigInt("+0");
+        b1 = new BigInt("100000000000000000000000000000000000000");
+        b2 = new BigInt("9999999999999999999999999999999999999999");
         b3 = b1.add(b2);
         System.out.println("1) sum b3 is " + b1 +" + " + b2 + " = " + b3);
           b3 = b1.subtract(b2);
