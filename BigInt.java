@@ -120,13 +120,13 @@ private String removeSign(String aNumber){
 public String toString(){
         ArrayList<Integer> temp = this.bigNum;
         String s = new String();
-        Collections.reverse(temp);
         s = temp.stream().map(Object:: toString).collect(Collectors.joining(""));
-        StringBuilder stringbuilder1 = new StringBuilder(s);
+        StringBuilder stringbuilder1 = new StringBuilder(s).reverse();
+        s = stringbuilder1.toString();
         s = s.replaceFirst("^0+(?!$)", "");
 
         if (this.isNegative == true) {
-              s = "-" + s;
+                s = "-" + s;
         }
 
 
@@ -159,21 +159,21 @@ public BigInt subtract(BigInt other){
         }
 
         if (other.isNegative && this.isNegative == true) {
-                if (this.bigNum.size() < other.bigNum.size()) {
-                        ArrayList<Integer> sum = createSum(other, this);
-                        BigInt result = new BigInt(sum.toString().replaceAll("[\\[\\], ]", ""));
+                if (this.isThisBigger(other)) {
+                        ArrayList<Integer> difference = createDifference(this, other);
+                        BigInt result = new BigInt("-"+difference.toString().replaceAll("[\\[\\], ]", ""));
                         return result;
                 }
 
                 else{
-                        ArrayList<Integer> difference = createDifference(this, other);
+                        ArrayList<Integer> difference = createDifference(other, this);
                         BigInt result = new BigInt(difference.toString().replaceAll("[\\[\\], ]", ""));
                         return result;
                 }
         }
         else if (this.isNegative == false && other.isNegative == true) {
-                ArrayList<Integer> difference = createDifference(this, other);
-                BigInt result = new BigInt(difference.toString().replaceAll("[\\[\\], ]", ""));
+                ArrayList<Integer> sum = createSum(this, other);
+                BigInt result = new BigInt(sum.toString().replaceAll("[\\[\\], ]", ""));
                 return result;
         }
         else if (this.isNegative == true && other.isNegative == false) {
@@ -210,6 +210,19 @@ private ArrayList<Integer> createDifference(BigInt aNumber, BigInt other ){
 //        System.out.println(tempArrayList.get(0));
 //        System.out.println(tempArrayList);
         return tempArrayList;
+}
+
+private boolean isThisBigger(BigInt this, BigInt other){
+  boolean b = true;
+        for( int i = this.bigNum.size()-1; i >= 0; i--) {
+                if(this.bigNum.get(i) > other.bigNum.get(i)) {
+                      b = true;
+                }
+                else {
+                      b = false;
+                }
+        }
+    return b;
 }
 
 // =============================================================================
