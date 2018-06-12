@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.regex.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.Collections;
 public class BigInt {
 
 // =============================================================================
@@ -119,18 +120,16 @@ private String removeSign(String aNumber){
 public String toString(){
         ArrayList<Integer> temp = this.bigNum;
         String s = new String();
-
+        Collections.reverse(temp);
         s = temp.stream().map(Object:: toString).collect(Collectors.joining(""));
-        StringBuilder stringbuilder1 = new StringBuilder(s).reverse();
+        StringBuilder stringbuilder1 = new StringBuilder(s);
         s = s.replaceFirst("^0+(?!$)", "");
-        s =  stringbuilder1.toString();
-
 
         if (this.isNegative == true) {
-                StringBuilder sb = new StringBuilder(s);
-                sb.insert(0, "-");
-                return sb.toString();
+              s = "-" + s;
         }
+
+
         return s;
 }
 
@@ -199,7 +198,7 @@ private ArrayList<Integer> createDifference(BigInt aNumber, BigInt other ){
                 tempArrayList.add(tempInt);
                 tempInt = 0;
         }
-        System.out.println(tempArrayList);
+//        System.out.println(tempArrayList);
         for(int i = (tempArrayList.size()-1); i >= 1; i--) {
                 if (tempArrayList.get(i) < 0) {
                         tempArrayList.set(i,tempArrayList.get(i) + 10);
