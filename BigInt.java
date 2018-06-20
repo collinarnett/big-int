@@ -419,47 +419,46 @@ public BigInt divideBy(BigInt other){
 }
 
 
-private BigInt createQuotient (BigInt divisor, BigInt dividend){
-        divisor.isNegative = false;
-        dividend.isNegative = false;
+private BigInt createQuotient (BigInt dividend, BigInt divisor){
+     divisor.isNegative = false;
+     dividend.isNegative = false;
 
 
-        BigInt finalQoutient = new BigInt("0");
-        BigInt one = new BigInt("1");
+     BigInt finalQoutient = new BigInt("0");
+     BigInt one = new BigInt("1");
 
-        while(compareBigInts(divisor, dividend) == 1) {
-                BigInt two = one;
-                BigInt lastTwo = new BigInt("0");
-                BigInt temp = dividend;
-                BigInt lastTemp = new BigInt("0");
-                while(compareBigInts(divisor, temp) == 1) {
-                        lastTwo = two;
-                        lastTemp = temp;
+     while(compareBigInts(dividend, divisor) == 1) {
+             BigInt two = one;
+             BigInt lastTwo = new BigInt("0");
+             BigInt temp = divisor;
+             BigInt lastTemp = new BigInt("0");
+             while(compareBigInts(dividend, temp) == 1) {
+                     lastTwo = two;
+                     lastTemp = temp;
 
-                        if (two == one) {
-                                two = two.add(one);
-                        }
-                        else{
-                                two = two.add(two);
-                        }
-                        temp = dividend.multiply(two);
-                }
-              
+                     if (two == one) {
+                             two = two.add(one);
+                     }
+                     else{
+                             two = two.add(two);
+                     }
+                     temp = divisor.multiply(two);
+             }
 
-                finalQoutient = finalQoutient.add(lastTwo);
-                System.out.println(finalQoutient);
-                divisor = divisor.subtract(lastTemp);
 
-        }
-        finalQoutient = finalQoutient.add(one);
-        return finalQoutient;
-}
+             finalQoutient = finalQoutient.add(lastTwo);
+             dividend= dividend.subtract(lastTemp);
+
+     }
+     finalQoutient = finalQoutient.add(one);
+     return finalQoutient;
+ }
 
 public static void main(String[] args){
         BigInt b1;
         BigInt b2;
         BigInt b3;
-        b1 = new BigInt("1000000000000000");
+        b1 = new BigInt("100");
         b2 = new BigInt("5");
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
