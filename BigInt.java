@@ -155,31 +155,24 @@ private void addZerosIfNeeded(BigInt this, BigInt other){
         }
 }
 
-public int compareBigInts(BigInt aNumber, BigInt other){
+private int compareBigInts(BigInt aNumber, BigInt other){
         aNumber.addZerosIfNeeded(other);
-        int ret = 0;
-        if (aNumber.isNegative == true && other.isNegative == false) {
-                ret = -1;
-        }
-        else if (aNumber.isNegative == false && other.isNegative == true) {
-                ret = 1;
+        int signComparision = Boolean.compare(!aNumber.isNegative, !other.isNegative);
+        if ( signComparision!=0) {
+                return signComparision;
         }
         else{
                 for(int i = aNumber.bigNum.size()-1; i > 0; i--) {
-                        if (aNumber.bigNum.get(i) > other.bigNum.get(i)) {
-                                // aNumber is larger
-                                ret = 1;
-                                break;
-                        }
-                        else if(aNumber.bigNum.get(i) < other.bigNum.get(i)) {
-                                // other is larger
-                                ret = -1;
-                                break;
+                        int comparison = aNumber.isNegative ?
+                                         Integer.compare(other.bigNum.get(i), aNumber.bigNum.get(i))    :
+                                         Integer.compare(aNumber.bigNum.get(i), other.bigNum.get(i));
+                        if ( comparison != 0 ) {
+                                return comparison;
                         }
                 }
-        }
 
-        return ret;
+        }
+        return 0; // are the same
 }
 
 // =============================================================================
@@ -192,7 +185,7 @@ public BigInt subtract(BigInt other){
         this.addZerosIfNeeded(other);
 
         if (other.isNegative && this.isNegative == true) {
-                if (compareBigInts(this,other) == 1) {
+                if (compareBigInts(other,this) == 1) {
                         BigInt result = new BigInt("-"+createDifference(this, other).toString().replaceAll("[\\[\\], ]", ""));
                         return result;
                 }
@@ -394,7 +387,8 @@ public BigInt divideBy(BigInt other){
         BigInt positiveone = new BigInt("1");
         BigInt zero = new BigInt("0");
         if ((this.isNegative == false && other.isNegative == true) || (this.isNegative == true && other.isNegative == false)) {
-                if(this.bigNum.equals(other.bigNum)) {
+                if(this.bigNum == other.bigNum) {
+
                         return negativeone;
                 }
                 else if(this.toString() == zero.toString() || other.toString() == zero.toString() || compareBigInts(this, other) == -2) {
@@ -406,10 +400,10 @@ public BigInt divideBy(BigInt other){
                 }
         }
 
-        if(this.bigNum.equals(other.bigNum)) {
+        if(this.bigNum == other.bigNum) {
                 return positiveone;
         }
-        else if((this.toString() == zero.toString() || other.toString() == zero.toString()) || compareBigInts(this, other) == -2) {
+        else if((this.toString() == zero.toString() || other.toString() == zero.toString()) || compareBigInts(this, other) == -1) {
                 return zero;
         }
         else{
@@ -419,47 +413,49 @@ public BigInt divideBy(BigInt other){
 }
 
 
-private BigInt createQuotient (BigInt dividend, BigInt divisor){
-     divisor.isNegative = false;
-     dividend.isNegative = false;
+private BigInt createQuotient (BigInt aNumber, BigInt other){
+        BigInt dividend = new BigInt(aNumber.toString());
+        BigInt divisor = new BigInt(other.toString());
+        dividend.isNegative = false;
+        divisor.isNegative = false;
+        BigInt finalQoutient = new BigInt("0");
+        BigInt one = new BigInt("1");
+
+        while(compareBigInts(dividend, divisor) == 1) {
+                BigInt two = one;
+                BigInt lastTwo = new BigInt("0");
+                BigInt temp = divisor;
+                BigInt lastTemp = new BigInt("0");
+                while(compareBigInts(dividend, temp) == 1) {
+                        lastTwo = two;
+                        lastTemp = temp;
+
+                        if (two == one) {
+                                two = two.add(one);
+                        }
+                        else{
+                                two = two.add(two);
+                        }
+                        temp = divisor.multiply(two);
+
+                }
+
+                finalQoutient = finalQoutient.add(lastTwo);
+                dividend = dividend.subtract(lastTemp);
 
 
-     BigInt finalQoutient = new BigInt("0");
-     BigInt one = new BigInt("1");
+        }
+        finalQoutient = finalQoutient.add(one);
+        return finalQoutient;
+}
 
-     while(compareBigInts(dividend, divisor) == 1) {
-             BigInt two = one;
-             BigInt lastTwo = new BigInt("0");
-             BigInt temp = divisor;
-             BigInt lastTemp = new BigInt("0");
-             while(compareBigInts(dividend, temp) == 1) {
-                     lastTwo = two;
-                     lastTemp = temp;
-
-                     if (two == one) {
-                             two = two.add(one);
-                     }
-                     else{
-                             two = two.add(two);
-                     }
-                     temp = divisor.multiply(two);
-             }
-
-
-             finalQoutient = finalQoutient.add(lastTwo);
-             dividend= dividend.subtract(lastTemp);
-
-     }
-     finalQoutient = finalQoutient.add(one);
-     return finalQoutient;
- }
 
 public static void main(String[] args){
         BigInt b1;
         BigInt b2;
         BigInt b3;
-        b1 = new BigInt("100");
-        b2 = new BigInt("5");
+        b1 = new BigInt("366000000000");
+        b2 = new BigInt("36");
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
 }
