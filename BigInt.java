@@ -127,13 +127,13 @@ public String toString(){
         s = s.replaceFirst("^0+(?!$)", "");
 
         if (s.matches("0")) {
-          return "0";
+                return "0";
         }
         if (this.isNegative == true) {
                 s = "-" + s;
         }
 
-return s;
+        return s;
 
 
 }
@@ -401,7 +401,7 @@ public BigInt divideBy(BigInt other){
                         return zero;
                 }
                 else{
-                        BigInt result = new BigInt("-"+ this.createQuotient(other));
+                        BigInt result = new BigInt("-"+ createQuotient(this,other));
                         return result;
                 }
         }
@@ -413,58 +413,53 @@ public BigInt divideBy(BigInt other){
                 return zero;
         }
         else{
-                BigInt result = new BigInt(this.createQuotient(other).toString());
+                BigInt result = new BigInt(createQuotient(this, other).toString());
                 return result;
         }
 }
 
-private BigInt createQuotient(BigInt this, BigInt other){
-        BigInt tempquotient = raiseTo(this, other);
+
+private BigInt createQuotient (BigInt divisor, BigInt dividend){
+        divisor.isNegative = false;
+        dividend.isNegative = false;
 
 
+        BigInt finalQoutient = new BigInt("0");
+        BigInt one = new BigInt("1");
 
-        return tempquotient;
+        while(compareBigInts(divisor, dividend) == 1) {
+                BigInt two = one;
+                BigInt lastTwo = new BigInt("0");
+                BigInt temp = dividend;
+                BigInt lastTemp = new BigInt("0");
+                while(compareBigInts(divisor, temp) == 1) {
+                        lastTwo = two;
+                        lastTemp = temp;
 
-}
+                        if (two == one) {
+                                two = two.add(one);
+                        }
+                        else{
+                                two = two.add(two);
+                        }
+                        temp = dividend.multiply(two);
+                }
+              
 
-private BigInt raiseTo (BigInt aNumber, BigInt other){
-    aNumber.isNegative = false;
-    other.isNegative = false;
+                finalQoutient = finalQoutient.add(lastTwo);
+                System.out.println(finalQoutient);
+                divisor = divisor.subtract(lastTemp);
 
-    BigInt resettwo = new BigInt("2");
-    BigInt finalQoutient = new BigInt("0");
-
-
-    while(compareBigInts(aNumber, other) == 1) {
-            BigInt two = new BigInt("2");
-            int power = 0;
-            BigInt alpha = other;
-
-            while(compareBigInts(aNumber, alpha) == 1) {
-                    two = two.add(two);
-                    alpha = other.multiply(two);
-                    power += 1;
-            }
-
-            two = resettwo;
-
-            for(int i = 0; i < power-1; i++) {
-                    two = two.add(two);
-                    alpha = other.multiply(two);
-            }
-
-            aNumber = aNumber.subtract(alpha);
-            finalQoutient = finalQoutient.add(two);
-    }
-    finalQoutient = finalQoutient.add(resettwo);
-    return finalQoutient;
+        }
+        finalQoutient = finalQoutient.add(one);
+        return finalQoutient;
 }
 
 public static void main(String[] args){
         BigInt b1;
         BigInt b2;
         BigInt b3;
-        b1 = new BigInt("1000");
+        b1 = new BigInt("1000000000000000");
         b2 = new BigInt("5");
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
