@@ -27,8 +27,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-1");
         b2 = new BigInt("1");
         b3 = b1.add(b2);
@@ -39,8 +39,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("1");
         b2 = new BigInt("-1");
         b3 = b1.add(b2);
@@ -51,8 +51,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-1");
         b2 = new BigInt("-1");
         b3 = b1.add(b2);
@@ -63,8 +63,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("+1");
         b2 = new BigInt("+1");
         b3 = b1.add(b2);
@@ -75,8 +75,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-100");
         b2 = new BigInt("100");
         b3 = b1.add(b2);
@@ -87,8 +87,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("100");
         b2 = new BigInt("-100");
         b3 = b1.add(b2);
@@ -99,8 +99,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-100");
         b2 = new BigInt("-100");
         b3 = b1.add(b2);
@@ -111,8 +111,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("100");
         b2 = new BigInt("100");
         b3 = b1.add(b2);
@@ -121,10 +121,10 @@ public static void main(String[] args)
         System.out.println("difference b3 is " + b1 +" - " + b2 + " = " + b3);
         b3 = b1.multiply(b2);
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
-        // b3 = b1.divideBy(b2);
-        // System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.divideBy(b2);
+        System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("200");
         b2 = new BigInt("-0");
         b3 = b1.add(b2);
@@ -135,8 +135,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // //b3 = b1.modulus(b2);
-        // //System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-200");
         b2 = new BigInt("-0");
         b3 = b1.add(b2);
@@ -147,8 +147,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // //b3 = b1.modulus(b2);
-        // //System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-0");
         b2 = new BigInt("200");
         b3 = b1.add(b2);
@@ -159,8 +159,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-0");
         b2 = new BigInt("-200");
         b3 = b1.add(b2);
@@ -171,8 +171,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-21");
         b2 = new BigInt("-23");
         b3 = b1.add(b2);
@@ -183,8 +183,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-37");
         b2 = new BigInt("26");
         b3 = b1.add(b2);
@@ -195,8 +195,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
          System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        //  b3 = b1.modulus(b2);
-        //  System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+         b3 = b1.modulus(b2);
+         System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("37");
         b2 = new BigInt("-26");
         b3 = b1.add(b2);
@@ -207,8 +207,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-37");
         b2 = new BigInt("-26");
         b3 = b1.add(b2);
@@ -219,8 +219,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-200111111111111111199999999");
         b2 = new BigInt("3333333333333388888888888888888888555555555555555555555555");
         b3 = b1.add(b2);
@@ -231,8 +231,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("66666666666666666666677777777777777777777711111111111111111200");
         b2 = new BigInt("-3333333333333333333344444444444");
         b3 = b1.add(b2);
@@ -243,8 +243,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-66666666666666666666677777777777777777777711111111111111111200");
            b2 = new BigInt("-333333");
            b3 = b1.add(b2);
@@ -255,8 +255,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("6666666");
            b2 = new BigInt("3333333333333333333344444444444444444444455555555555555550");
            b3 = b1.add(b2);
@@ -267,8 +267,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("1111111111111111111111111111111122222222222222222222222222222222222333333333333333333333333333333334444444444444444444444444");
            b2 = new BigInt("99999999999999999999999999999888888888888888888888888888888881111111111111111111111111111111122222222222222222222222222222222222333333333333333333333333333333334444444444444444444444444");
            b3 = b1.add(b2);
@@ -279,8 +279,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-1111111111111111111111111111111122222222222222222222222222222222222333333333333333333333333333333334444444444444444444444444");
            b2 = new BigInt("99999999999999999999999999999888888888888888888888888888888881111111111111111111111111111111122222222222222222222222222222222222333333333333333333333333333333334444444444444444444444444");
            b3 = b1.add(b2);
@@ -291,8 +291,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("1111111111111111111111111111111122222222222222222222222222222222222333333333333333333333333333333334444444444444444444444444");
            b2 = new BigInt("-99999999999999999999999999999888888888888888888888888888888881111111111111111111111111111111122222222222222222222222222222222222333333333333333333333333333333334444444444444444444444444");
            b3 = b1.add(b2);
@@ -303,8 +303,8 @@ public static void main(String[] args)
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
         b3 = b1.divideBy(b2);
         System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
         b1 = new BigInt("-1111111111111111111111111111111122222222222222222222222222222222222333333333333333333333333333333334444444444444444444444444");
         b2 = new BigInt("-99999999999999999999999999999888888888888888888888888888888881111111111111111111111111111111122222222222222222222222222222222222333333333333333333333333333333334444444444444444444444444");
         b3 = b1.add(b2);
@@ -313,10 +313,10 @@ public static void main(String[] args)
         System.out.println("difference b3 is " + b1 +" - " + b2 + " = " + b3);
         b3 = b1.multiply(b2);
         System.out.println("product b3 is " + b1 +" * " + b2 + " = " + b3);
-        // b3 = b1.divideBy(b2);
-        // System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
-        // b3 = b1.modulus(b2);
-        // System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
+        b3 = b1.divideBy(b2);
+        System.out.println("quotient b3 is " + b1 +" / " + b2 + " = " + b3);
+        b3 = b1.modulus(b2);
+        System.out.println("modulus b3 is " + b1 +" mod " + b2 + " = " + b3);
 
 
 }
